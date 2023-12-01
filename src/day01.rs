@@ -55,10 +55,8 @@ pub fn main() {
     let mut part1 = 0;
     let mut part2 = 0;
     for line in contents.lines() {
-        // let tmp = parse_str(line, PATTERN2);
+        part1 += parse_str(line, PATTERN1);
         part2 += parse_str(line, PATTERN2);
-        // part1 += parse_str(line, PATTERN1);
-        // println!("line: {line}, value: {tmp}, total: {part2}");
     }
     println!("part1: {part1}");
     println!("part2: {part2}");
