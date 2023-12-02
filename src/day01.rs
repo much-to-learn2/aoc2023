@@ -1,13 +1,12 @@
 use std::fs;
 use std::collections::HashMap;
-use regex::{Regex, RegexSet};
+use regex::Regex;
 
 const PATTERN1: &str = r"(\d)";
 const PATTERN2: &str = r"(\d|one|two|three|four|five|six|seven|eight|nine)"; 
 
 fn parse_str(s: &str, pattern: &str) -> isize {
     // rust regex engine doesn't support overlap, so manually "de-overlap"
-    let old_s = s;
     let s = &s.replace("twone", "twoone");
     let s = &s.replace("oneight", "oneeight");
     let s = &s.replace("eightwo", "eighttwo");
@@ -25,32 +24,26 @@ fn parse_str(s: &str, pattern: &str) -> isize {
     hm.insert("nine", "9");
 
     let mut it = re.find_iter(s);
-    let mut first = it.next().unwrap().as_str();
+    let first = it.next().unwrap().as_str();
     let mut last = first;
     while let Some(m) = it.next() {
         last = m.as_str();
     };
-    first = match hm.get(first) {
+    let first = match hm.get(first) {
         Some(s) => s,
         None => first,
     };
-    last = match hm.get(last) {
+    let last = match hm.get(last) {
         Some(s) => s,
         None => last,
     };
     let mut res = String::from(first);
     res.push_str(last);
-    if (old_s.len() != s.len()) {
-        println!("old s: {old_s}");
-        println!("new s: {s}");
-        println!("res:   {res}");
-    }
     res.parse::<isize>().unwrap()
 }
 
 pub fn main() {
     println!("main from day01!");
-    let SET1: RegexSet = RegexSet::new(&[r"\d"]).unwrap();
     let contents = fs::read_to_string("inputs/day01.txt").expect("unable to read file contents");
     let mut part1 = 0;
     let mut part2 = 0;
