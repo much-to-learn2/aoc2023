@@ -9,6 +9,7 @@ pub fn main() {
      match day {
          1 => { aoc2023::day01::main() },
          2 => { aoc2023::day02::main() },
+         3 => { aoc2023::day03::main() },
          _ => { println!("day number {day} not solved") },
      };
 }
