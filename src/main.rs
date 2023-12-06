@@ -12,6 +12,7 @@ pub fn main() {
          3 => { aoc2023::day03::main() },
          4 => { aoc2023::day04::main() },
          5 => { aoc2023::day05::main() },
+         6 => { aoc2023::day06::main() },
          _ => { println!("day number {day} not solved") },
      };
 }
