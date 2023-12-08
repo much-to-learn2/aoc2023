@@ -20,7 +20,7 @@ impl ProxyMap {
         for &(start, stop) in self.key_ranges.iter() {
             if key >= start && key <= stop {
                 let diff = key - start;
-                let res = self.val_ranges[i] + diff;
+                let _res = self.val_ranges[i] + diff;
                 // println!("{key} mapped to {res}");
                 return self.val_ranges[i] + diff;
             }
